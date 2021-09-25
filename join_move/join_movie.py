@@ -6,6 +6,7 @@ import glob
 from pydub import AudioSegment #音声操作用　mp3関連の処理
 import ffmpeg
 
+print('動画連結ツール ver 0.1.0')
 # 動画リストを連結する。 mp4のみ対応
 # - movie_fns [] 動画ファイルリスト（入力）
 # - output_fn string 出力ファイル名（動画連結後のファイル名）
@@ -53,7 +54,7 @@ def join_movie(movie_fns, output_fn):
             output.write(frame) # 1フレームずつ出力動画へ書き込む
             ret, frame = movie.read() # 次のフレームを取得する
 
-    audio0.export("output.mp3", format="mp3")
+    audio0.export("./output/audio.mp3", format="mp3")
     
 
 
@@ -66,18 +67,18 @@ movie_fns = sorted(movie_fns) # 動画ファイル名リストを並べ替える
 
 
 # 連結後の動画ファイル名（出力ファイル名）
-output_fn = "output.mp4"
+output_fn = "./output/movie_only.mp4"
 
 join_movie(movie_fns, output_fn)
 
 # 映像を読みこむ
-stream_video = ffmpeg.input("output.mp4")
+stream_video = ffmpeg.input("./output/movie_only.mp4")
 
 #オーディオを読み込む
-stream_audio = ffmpeg.input("output.mp3")
+stream_audio = ffmpeg.input("./output/audio.mp3")
 
 #合成
-stream = ffmpeg.output(stream_video, stream_audio, "output2.mp4", vcodec="copy", acodec="copy")
+stream = ffmpeg.output(stream_video, stream_audio, "./output/output.mp4", vcodec="copy", acodec="copy")
 ffmpeg.run(stream)
 
 print('Success')

@@ -5,7 +5,7 @@ print ('pydubでmp3のフェードインとフェードアウト')
 from pydub import AudioSegment
 
 
-audio = AudioSegment.from_file("./test_data/test1.mp3", "mp3")
+audio = AudioSegment.from_file("./test_data/test3.mp3", "mp3")
 
 # フェードイン4秒、フェードアウト3.5秒に変換したオーディオオブジェクトを作成
 audio2 = audio.fade_in(4000).fade_out(3500)

@@ -1,0 +1,5 @@
+
+#テスト設定ファイル
+animal = neko
+age = 16
+power= https://amaraimusi.sakura.ne.jp/note_prg/a=123

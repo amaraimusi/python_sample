@@ -35,7 +35,7 @@ if ext != 'mp4':
 left_path = stringLeftRev(input_mp4_fp, '.')
 output_mp3_fp = left_path + '.mp3'
 
-print('主力ファイルパス→' +  output_mp3_fp)
+print('出力ファイルパス→' +  output_mp3_fp)
 print('しばらくお待ちください...')
 
 # # mp4ファイルの読み込み

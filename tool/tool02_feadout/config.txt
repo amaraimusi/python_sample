@@ -1,0 +1,5 @@
+
+#設定ファイル
+input_mp3_fp = C:\Users\user\Videos\movie_edit\bgm\NKM-G-11-31-713034405-0-57742-120-120-4-2906-52-0-25-538-25-350-0-0-0-0-0-0-0_fadeout.mp3
+fadein_time = 1000
+fadeout_time = 3000

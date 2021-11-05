@@ -1,0 +1,8 @@
+
+#設定ファイル
+input_mp4_fp = C:\Users\user\Videos\movie_edit\n20\n20.mp4
+input_mp3_fp = C:\Users\user\Videos\movie_edit\bgm\TID001435_fadeout.mp3
+
+#ボリューム  -10～10  0は音量変更なし,負値にすると音量を小さくする
+volume = -10
+position = 104000

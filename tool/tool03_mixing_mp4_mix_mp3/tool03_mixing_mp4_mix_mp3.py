@@ -19,9 +19,13 @@ def stringLeftRev(s, mark):
     return res
 
 import os
+import datetime
 import ffmpeg
 from pydub import AudioSegment
 from ConfigX import ConfigX
+
+dt = datetime.datetime.now()
+u = dt.strftime("%Y%m%d%H%M%S")
 
 configX = ConfigX();
 configs = configX.getConfigs('./config.txt');
@@ -49,10 +53,10 @@ if ext != 'mp3':
     print('合成オーディオファイルはmp3ファイルでありません。処理を中断します。')
     exit()
     
-tmp_fn = 'tmp5.mp3'
+tmp_fn = 'tmp' + u +  ' .mp3'
     
 left_path = stringLeftRev(input_mp4_fp, '.')
-output_mp4_fp = left_path + '_3.mp4'
+output_mp4_fp = left_path + '_' + u + '.mp4'
 print('出力ファイルパスmp4→' +  output_mp4_fp)
 
 
@@ -66,10 +70,6 @@ audio2 = AudioSegment.from_file(input_mp3_fp, "mp3")
 
 print('mp3の音量調整')
 audio2 = audio2 - 10 #音量を変更
-
-# 一時ファイルを除去
-if os.path.exists(tmp_fn):
-    os.remove(tmp_fn)
     
 print('音声のミキシング中')
 audio3 = audio1.overlay(audio2, position=position)

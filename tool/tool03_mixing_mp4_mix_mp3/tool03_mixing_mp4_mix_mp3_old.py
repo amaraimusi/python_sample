@@ -61,33 +61,16 @@ print('出力ファイルパスmp4→' +  output_mp4_fp)
 
 
 
-# 動画の再生時間を取得する
-probe = ffmpeg.probe(input_mp4_fp)
-movInfo = probe['streams'][0];
-mov_duration = float(movInfo['duration']); # 動画再生時間
 
-
-#動画の元の音声を取得
 print('mp4読み込み中')
 audio1 = AudioSegment.from_file(input_mp4_fp, "mp4")
-
-audio1_duration =audio1.duration_seconds ; # audio1の再生時間を取得
-if mov_duration > audio1_duration + 2:
-    print('動画の再生時間→' + str(mov_duration))
-    print('音声の再生時間→' + str(audio1_duration))
-    add_ms = (mov_duration - audio1_duration) * 1000;
-    print(audio1_duration)
-    add_silent = AudioSegment.silent(duration=add_ms) #１秒
-    audio1 = audio1 + add_silent;
-    print(audio1.duration_seconds )
 
 print('mp3読み込み中')
 audio2 = AudioSegment.from_file(input_mp3_fp, "mp3")
 
 print('mp3の音量調整')
 audio2 = audio2 - 10 #音量を変更
-
-# 元音声と追加音声のミキシング
+    
 print('音声のミキシング中')
 audio3 = audio1.overlay(audio2, position=position)
 print('ミキシングした音声を仮出力')
@@ -108,6 +91,56 @@ ffmpeg.run(stream)
 
 os.remove(tmp_fn)
 
+# print('mp4読み込み中')
+# audio1 = AudioSegment.from_file(input_mp4_fp, "mp4")
+#
+# print('mp3読み込み中')
+# audio2 = AudioSegment.from_file(input_mp3_fp, "mp3")
+#
+# print('音声のミキシング中')
+# audio3 = audio1.overlay(audio2, position=position)
+#
+#
+# print('出力中...')
+# audio3.export(output_mp4_fp,  format="mp4")
+
+
+
+
+
+# # mp4ファイルの読み込み
+# audio = AudioSegment.from_file(input_mp4_fp, "mp4")
+#
+# # mp3としてエクスポートする
+# audio.export("tmp.mp3", format="mp3")
+#
+# audio1 = AudioSegment.from_file(input_mp3_fp, "mp3")
+# audio2 = AudioSegment.from_file('tmp.mp3', "mp3")
+#
+# audio3 = audio2.overlay(audio1, position=position)
+#
+# audio3.export(output_mp3_fp,  format="mp3")
+
+
+
+
+
+#stream = ffmpeg.output(stream_video, stream_audio, "./test_data/output07.mp4", vcodec="copy", acodec="copy")
+
+#
+# left_path = stringLeftRev(input_mp3_fp, '.')
+# output_mp3_fp = left_path + '_fadeout.mp3'
+#
+# print('出力ファイルパス→' +  output_mp3_fp)
+# print('しばらくお待ちください...')
+#
+# audio = AudioSegment.from_file(input_mp3_fp, "mp3")
+#
+# # フェードイン,フェードアウト変換
+# audio2 = audio.fade_in(fadein_time).fade_out(fadeout_time)
+#
+# # 変換したオーディオオブジェクトを出力
+# audio2.export(output_mp3_fp,  format="mp3")
 
 print('Success!')
 

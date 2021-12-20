@@ -1,6 +1,6 @@
 import tkinter as tk
 
-print ('HelloWorld tkinter')
+print ('HelloWorld tkinterの基本')
 
 root = tk.Tk() # メインウィンドウ
 root.title('My First App')

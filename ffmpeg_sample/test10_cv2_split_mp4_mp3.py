@@ -14,7 +14,7 @@ print('mp4を音声なしmp4とmp3に分割する。')
 # @param string output_mp4_fp 出力動画ファイルパス（音声なしmp4)
 # @param string output_mp3_fp 出力音声ファイルパス（mp3)
 # 
-def splitMovieOnlyAndSound(input_fp, output_mp4_fp, output_mp3_fp):
+def splitVideoAndSound(input_fp, output_mp4_fp, output_mp3_fp):
     
     sound = AudioSegment.from_file(input_fp, "mp4")
     sound_sec = sound.duration_seconds # 再生時間
@@ -55,7 +55,7 @@ input_fp = 'test_data/MVI_0887.MP4'
 output_mp4_fp = 'test_data/output10.mp4'
 output_mp3_fp = 'test_data/output10.mp3'
 
-splitMovieOnlyAndSound(input_fp, output_mp4_fp, output_mp3_fp)
+splitVideoAndSound(input_fp, output_mp4_fp, output_mp3_fp)
 
 
 print('Success')

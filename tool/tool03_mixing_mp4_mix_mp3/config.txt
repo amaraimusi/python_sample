@@ -1,8 +1,8 @@
 
 #設定ファイル
-input_mp4_fp = C:\Users\user\Videos\movie_edit\n24\n24a6.mp4
-input_mp3_fp = C:\Users\user\Videos\movie_edit\bgm\min\TID001435.mp3
+input_mp4_fp = C:\Users\user\Videos\movie_edit\n25\n25a2.mp4
+input_mp3_fp = C:\Users\user\Videos\movie_edit\bgm\min\TID001444.mp3
 
 #ボリューム  -10～10  0は音量変更なし,負値にすると音量を小さくする。positionはms
 volume = -10
-position = 236000
+position = 289000

@@ -37,34 +37,26 @@ configs = configX.getConfigs('./config.txt');
 input_mp4_fp = configs['input_mp4_fp'];
 
 
-
-input_mp3_fp = configs['input_mp3_fp'];
-
 print('入力ファイルパスmp4→' +  input_mp4_fp)
-print('合成オーディオパスmp3→' +  input_mp3_fp)
-position = configs['position']
-volume = configs['volume']
-print('position=' + position)
-print('volume=' + volume)
-position = int(position);
-volume = int(volume);
+
+
+# position = configs['position']
+# volume = configs['volume']
+# print('position=' + position)
+# print('volume=' + volume)
+# position = int(position);
+# volume = int(volume);
 ext = stringRightRev(input_mp4_fp, '.')
 ext = ext.lower()
 if ext != 'mp4':
     print('mp4ファイルでありません。処理を中断します。')
     exit()
     
-ext = stringRightRev(input_mp3_fp, '.')
-ext = ext.lower()
-if ext != 'mp3':
-    print('合成オーディオファイルはmp3ファイルでありません。処理を中断します。')
-    exit()
-    
-tmp_fn = 'tmp' + u +  ' .mp3'
-    
 left_path = stringLeftRev(input_mp4_fp, '.')
 output_mp4_fp = left_path + '_' + u + '.mp4'
+output_mp3_fp = left_path + '_' + u + '.mp3'
 print('出力ファイルパスmp4→' +  output_mp4_fp)
+print('出力ファイルパスmp3→' +  output_mp3_fp)
 
 
 

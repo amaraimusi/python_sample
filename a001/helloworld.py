@@ -1,4 +1,6 @@
-print ('HelloWorld2')
+
+no = 3
+print (f'HelloWorld{no}')
 
 list = {'animal_name': '猫ちゃん', 'age': 3, 'place': '家の中'}
 

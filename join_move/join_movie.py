@@ -44,30 +44,30 @@ def chageMovieSpeed(input_fp, output_fp, rate):
 # @param string output_fp 出力動画ファイルパス
 # @param rete 変更後の再生速度倍率 　例:0.5→1/2のスローモーション, 2.0→2倍速再生
 # 
-def chageMovieSpeed(input_fp, output_fp, rate):
-    # mp4を設定
-    fourcc = cv2.VideoWriter_fourcc('m','p','4','v')
-    
-    movie = cv2.VideoCapture(input_fp)
-    fps = int(movie.get(cv2.CAP_PROP_FPS))  
-    print(f'変更前fps={str(fps)}')
-    
-    width = movie.get(cv2.CAP_PROP_FRAME_WIDTH)
-    height = movie.get(cv2.CAP_PROP_FRAME_HEIGHT)
-    
-    fps2 = fps * rate
-    print(f'変更後fps={str(fps2)}')
-    output = cv2.VideoWriter(output_fp, int(fourcc), fps2, (int(width), int(height)))
-    
-    while True:
-        ret, frame = movie.read()        # フレームを取得
-        output.write(frame)               # 動画を保存する
-        # フレームが取得できない場合はループを抜ける
-        if not ret:
-            break
-        
-    # 撮影用オブジェクトとウィンドウの解放
-    movie.release()
+# def chageMovieSpeed(input_fp, output_fp, rate):
+#     # mp4を設定
+#     fourcc = cv2.VideoWriter_fourcc('m','p','4','v')
+#
+#     movie = cv2.VideoCapture(input_fp)
+#     fps = int(movie.get(cv2.CAP_PROP_FPS))  
+#     print(f'変更前fps={str(fps)}')
+#
+#     width = movie.get(cv2.CAP_PROP_FRAME_WIDTH)
+#     height = movie.get(cv2.CAP_PROP_FRAME_HEIGHT)
+#
+#     fps2 = fps * rate
+#     print(f'変更後fps={str(fps2)}')
+#     output = cv2.VideoWriter(output_fp, int(fourcc), fps2, (int(width), int(height)))
+#
+#     while True:
+#         ret, frame = movie.read()        # フレームを取得
+#         output.write(frame)               # 動画を保存する
+#         # フレームが取得できない場合はループを抜ける
+#         if not ret:
+#             break
+#
+#     # 撮影用オブジェクトとウィンドウの解放
+#     movie.release()
     
 # 動画リストを連結する。 mp4のみ対応
 # - movie_fns [] 動画ファイルリスト（入力）
@@ -180,7 +180,7 @@ print(f'movie_onlyの再生時間={str(time0)}')
 sound_time = getTimeOfSoundPydub('./output/audio.mp3')
 print(f'音声の再生時間={str(sound_time)}')
 
-rate = sound_time / time0
+rate =  time0 / sound_time
 
 chageMovieSpeed('./output/movie_only.mp4', './output/movie_only2.mp4', rate)
 
@@ -190,9 +190,9 @@ stream_video = ffmpeg.input("./output/movie_only2.mp4")
 #オーディオを読み込む
 stream_audio = ffmpeg.input("./output/audio.mp3")
 
-# #合成■■■□□□■■■□□□
-# stream = ffmpeg.output(stream_video, stream_audio, "./output/output.mp4", vcodec="copy", acodec="copy")
-# ffmpeg.run(stream)
+#合成■■■□□□■■■□□□
+stream = ffmpeg.output(stream_video, stream_audio, "./output/output.mp4", vcodec="copy", acodec="copy")
+ffmpeg.run(stream)
 
 print('Success')
 
